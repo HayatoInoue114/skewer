@@ -285,7 +285,7 @@ void GameScene::CheckAllCollisions() {
 #pragma region 自キャラと敵弾の当たり判定
 	posA = player_->GetWorldPosition();
 
-	for (EnemyBullet* bullet : enemyBullets) {
+	/*for (EnemyBullet* bullet : enemyBullets) {
 		posB = bullet->GetWorldPosition();
 
 		Vector3 distance = Subtract(posA, posB);
@@ -293,6 +293,10 @@ void GameScene::CheckAllCollisions() {
 			player_->OnCollision();
 			bullet->OnCollision();
 		}
+	}*/
+
+	for (EnemyBullet* bullet : enemyBullets_) {
+		CheckCollisionPair(player_, bullet);
 	}
 #pragma endregion
 
@@ -447,8 +451,6 @@ void GameScene::EnemyFire() {
 	}
 }
 
-
-
 void GameScene::FireAndResetCallback() {
 	EnemyFire();
 
@@ -456,3 +458,13 @@ void GameScene::FireAndResetCallback() {
 	    new TimedCall(std::bind(&GameScene::FireAndResetCallback, this), kFireInterval));
 }
 
+void GameScene::CheckCollisionPair(Collider* colliderA, Collider* colliderB){
+	Vector3 posA = colliderA->GetWorldPosition();
+	Vector3 posB = colliderB->GetWorldPosition();
+
+	Vector3 distance = Subtract(posA, posB);
+	if (std::pow(distance.x, 2) + std::pow(distance.y, 2) + std::pow(distance.z, 2)) {
+		colliderA->OnCollision();
+		colliderB->OnCollision();
+	}
+}

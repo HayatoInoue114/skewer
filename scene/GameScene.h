@@ -15,6 +15,7 @@
 #include "WorldTransform.h"
 #include <sstream>
 #include "TimedCall.h"
+#include "Collider.h"
 
 class Enemy;
 
@@ -80,10 +81,16 @@ public: // メンバ関数
 
 	/// <summary>
 	/// 弾を発射し、タイマーをリセットするコールバック関数
-	/// </summary>
+	/// <param name="colliderA">コライダーA</param>
+	/// <param name="colliderB">コライダーB</param>
+	void CheckCollisionPair(Collider* colliderA, Collider* colliderB);
+
 	void FireAndResetCallback();
 	
-	
+/// <summary>
+/// コライダー2つの衝突判定と応答
+/// </summary>
+/// 
 
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;

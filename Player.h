@@ -7,11 +7,12 @@
 #include "WorldTransform.h"
 #include <Sprite.h>
 #include <list>
+#include "Collider.h"
 
 /// <summary>
 /// 自キャラ
 /// </summary>
-class Player {
+class Player : public Collider {
 public:
 	Player();
 	~Player();
@@ -54,7 +55,7 @@ public:
 	Vector3 GetReticleWorldPosition(); 
 
 	// 衝突を検出したら呼び出されるコールバック関数
-	void OnCollision();
+	void OnCollision() override;
 
 	/*WorldTransform GetWorldTransform() { return worldTransform_; }
 	void SetWorldTransform_(WorldTransform worldTransform);*/
@@ -80,6 +81,11 @@ public:
 
 
 	bool GetIsAlive() { return isAlive_; }
+
+	/// <summary>
+	/// ワールド座標を取得
+	/// </summary>
+	Vector3 GetWorldPosition() override;
 private:
 	Audio* audio_ = nullptr;
 	// ワールド変換データ

@@ -20,7 +20,7 @@ class IEnemyState;
 /// <summary>
 /// 敵
 /// </summary>
-class Enemy {
+class Enemy : public Collider{
 public:
 	Enemy();
 	~Enemy();
@@ -54,10 +54,10 @@ public:
 	/// <summary>
 	/// ワールド座標を取得
 	/// </summary>
-	Vector3 GetWorldPosition();
+	Vector3 GetWorldPosition() override;
 
 	// 衝突を検出したら呼び出されるコールバック関数
-	void OnCollision();
+	void OnCollision() override;
 
 	void SetPlayer(Player* player) { player_ = player; }
 

@@ -88,8 +88,8 @@ void Player::Update(ViewProjection viewProjection) {
 			spritePosition.y -= (float)joyState.Gamepad.sThumbRY / SHRT_MAX * 5.0f;
 
 			spritePosition.x =
-				std::clamp(spritePosition.x, 0.0f, (float)WinApp::kWindowWidth);
-			spritePosition.y = std::clamp(
+				Clamp(spritePosition.x, 0.0f, (float)WinApp::kWindowWidth);
+			spritePosition.y = Clamp(
 				spritePosition.y, 0.0f, (float)WinApp::kWindowHeight);
 			//スプライトの座標変更を反映
 			sprite2DReticle_->SetPosition(spritePosition);
@@ -123,10 +123,10 @@ void Player::Update(ViewProjection viewProjection) {
 
 		// 範囲を超えない処理
 		worldTransform_.translation_.x =
-			std::clamp(worldTransform_.translation_.x, -kMoveLimitX, kMoveLimitX);
+			Clamp(worldTransform_.translation_.x, -kMoveLimitX, kMoveLimitX);
 
 		worldTransform_.translation_.y =
-			std::clamp(worldTransform_.translation_.y, -kMoveLimitY, kMoveLimitY);
+			Clamp(worldTransform_.translation_.y, -kMoveLimitY, kMoveLimitY);
 
 
 
@@ -191,11 +191,11 @@ void Player::Update(ViewProjection viewProjection) {
 		worldTransform3DReticle_.translation_.y = posNear.y + mouseDirection.y * kDistanceTestObject;
 		worldTransform3DReticle_.translation_.z = posNear.z + mouseDirection.z * kDistanceTestObject;
 
-		worldTransform3DReticle_.translation_.x = std::clamp(
+		worldTransform3DReticle_.translation_.x = Clamp(
 			worldTransform3DReticle_.translation_.x, (float)-WinApp::kWindowWidth,
 			(float)WinApp::kWindowWidth);
 
-		worldTransform3DReticle_.translation_.y = std::clamp(
+		worldTransform3DReticle_.translation_.y = Clamp(
 			worldTransform3DReticle_.translation_.y, (float)-WinApp::kWindowHeight,
 			(float)WinApp::kWindowHeight);
 

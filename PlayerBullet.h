@@ -4,7 +4,7 @@
 #include "WorldTransform.h"
 #include <assert.h>
 
-class PlayerBullet {
+class PlayerBullet : Collider{
 public:
 	PlayerBullet();
 	~PlayerBullet();
@@ -28,14 +28,14 @@ public:
 	void Draw(const ViewProjection& viewProjection);
 
 	// 衝突を検出したら呼び出されるコールバック関数
-	void OnCollision();
+	void OnCollision() override;
 
 	bool IsDead() const { return isDead_; }
 
 	/// <summary>
 	/// ワールド座標を取得
 	/// </summary>
-	Vector3 GetWorldPosition();
+	Vector3 GetWorldPosition() override;
 
 private:
 	// ワールド変換データ
