@@ -6,7 +6,9 @@ public:
 	float GetRadius() { return radius_; }
 	
 	//”¼Œa‚ğİ’è
-	void SetRadius() {}
+	void SetRadius(Collider* collider) {
+		
+	}
 
 private:
 	float radius_ = 0;
